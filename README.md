@@ -14,7 +14,7 @@ Flipside
 ============
 Flipside is a very simple Groovy / Java options library. It includes three distinct kinds of options and a Matcher. That's it. Easy peasy.
 
-I built it because I really missed these idioms built into the Scala language when I transitioned back to Java / Groovy.
+I built it because I especially missed these idioms when transitioning from Scala back to Java / Groovy.
 
 # Fail Enum
 Two of the three options take the `Fail` enum as part of their constructor params. This is to indicate what went wrong and to try and map the failure back to an HTTP response code. For now, these are hard-coded. In the future, they will be an interface that will allow you to drop in your own failure types.
