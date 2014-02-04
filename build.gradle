@@ -1,0 +1,116 @@
+ext.version = '0.1.0'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    // For spock
+    maven {
+        url 'http://oss.sonatype.org/content/repositories/releases/'
+    }
+}
+
+apply plugin: 'groovy'
+apply plugin: 'maven'
+apply plugin: 'idea'
+
+group = 'com.johnnywey.flipside'
+ext.groupId = group
+ext.artifactId = 'flipside'
+
+jar {
+    baseName = artifactId
+}
+
+sourceSets.main.groovy.srcDirs = ["src/main/groovy"]
+
+groovydoc.groovyClasspath = configurations.default
+
+idea.module {
+    ext.gradleCacheVariable = 'GRADLE_CACHE'
+    ext.downloadJavadoc = true
+}
+
+idea.project {
+    ext.jdkName = '1.7'
+    ext.wildcards = ['!?*.java', '!?*.groovy']
+}
+
+ext.groovy = 'org.codehaus.groovy:groovy-all:2.2.1'
+ext.junit = 'junit:junit:4.11'
+ext.spock = 'org.spockframework:spock-core:0.7-groovy-2.0'
+
+dependencies {
+    compile groovy
+    testCompile junit
+    testCompile spock
+}
+
+task testJar(type: Jar, dependsOn: testClasses) {
+    baseName = "test-${project.archivesBaseName}"
+    from sourceSets.test.output
+}
+
+configurations {
+    tests
+}
+
+artifacts {
+    tests testJar
+}
+
+test {
+    String testType = System.properties['test.type']
+    if (testType == 'integration') {
+        include '**/*IntegrationTest.*'
+        include '**/*IntegrationSpec.*'
+    } else if (testType == 'unit') {
+        include '**/*Test.*'
+        include '**/*Spec.*'
+        exclude '**/*IntegrationTest.*'
+        exclude '**/*IntegrationSpec.*'
+    } else if (testType == 'all') {
+        include '**/*Test.*'
+        include '**/*Spec.*'
+    } else {
+        //Default to unit
+        include '**/*Test.*'
+        include '**/*Spec.*'
+        exclude '**/*IntegrationTest.*'
+        exclude '**/*IntegrationSpec.*'
+    }
+
+    // Prints results of test inline
+    afterSuite { desc, result ->
+        // Don't report on modules with no test suites
+        if (!desc.className) {
+            return
+        }
+
+        String testStatus
+        if (System.properties['nocolor']) {
+            testStatus = result.resultType
+        } else if (result.resultType != org.gradle.api.tasks.testing.TestResult.ResultType.SUCCESS) {
+            // Print in red if failed
+            testStatus = "\033[31m${result.resultType}\033[0m"
+        } else {
+            // Print in green if success/skipped
+            testStatus = "\033[32m${result.resultType}\033[0m"
+        }
+        println "Test suite ${desc.name}: ${testStatus}"
+    }
+}
+
+task integrationTest(type: Test) {
+    description = 'Runs the integration tests :D'
+    group = 'Verification'
+    include '**/*IntegrationTest.*'
+    include '**/*IntegrationSpec.*'
+    afterSuite { desc, result ->
+        if (desc.className)
+            println "Test suite ${desc.name}: ${result.resultType}"
+    }
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.10'
+}

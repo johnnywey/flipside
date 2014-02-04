@@ -1,0 +1,33 @@
+.history
+*.ser
+# gradle/maven generated
+target
+build
+.gradle
+pom.xml.releaseBackup
+release.properties
+staging_release.sh
+
+# intellij
+.idea
+*.iml
+bin
+*.ipr
+*.iws
+out
+exportToHTML
+
+#junit tmp
+junit*.properties
+
+#logs
+logs
+
+# random stuff that should be ignored
+.DS_Store
+out.*
+apicheck-results
+stacktrace.log
+
+.cache
+.target
