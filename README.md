@@ -43,7 +43,8 @@ assert empty.isEmpty()
 assert !full.isEmpty()
 
 assert "A string!" == full.get()
-empty.get() // will throw an UnsupportedOperationException```
+empty.get() // will throw an UnsupportedOperationException
+```
 
 # Marker
 A `Marker` is designed for operations that result in [side effects](http://en.wikipedia.org/wiki/Side_effect_(computer_science)) such as writing some tracking information in a database or uploading a photo to a back-end image processing tier. You wouldn't need a return type if things go well but, if things fail, you'd probably want some indication as to *why*.
@@ -63,7 +64,8 @@ assert Fail.NOT_FOUND == failed.getReason()
 
 // these will throw an UnsupportedOperationException
 worked.getReason()
-worked.getDetail()```
+worked.getDetail()
+```
 
 # Failable
 A `Failable` is similar to the `Marker` and is designed for operations that succeed with a value or fail with an error condition. When the operation succeeds, you can call `.get()` on the resulting object to get at the value.
@@ -83,6 +85,7 @@ assert Fail.NOT_FOUND == failed.getReason()
 failed.get() // will throw an UnsupportedOperationException
 
 assert success.get() == "It worked!"
+```
 
 # Matcher
 **Coming soon!**
