@@ -16,6 +16,19 @@ Flipside is a very simple Groovy / Java options library. It includes three disti
 
 I built it because I especially missed these idioms when transitioning from Scala back to Java / Groovy.
 
+# Install
+You can install Flipside from the OSS Sonatype Maven repo (https://oss.sonatype.org/content/repositories/snapshots/):
+
+```xml
+<dependency>
+    <groupId>com.johnnywey</groupId>
+    <artifactId>flipside</artifactId>
+    <version>0.1.0-SNAPSHOT</version>
+</dependency>
+```
+
+I will pull together a full release shortly.
+
 # Fail Enum
 Two of the three options take the `Fail` enum as part of their constructor params. This is to indicate what went wrong and to try and map the failure back to an HTTP response code. For now, these are hard-coded. In the future, they will be an interface that will allow you to drop in your own failure types.
 

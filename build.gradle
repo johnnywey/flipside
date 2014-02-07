@@ -12,10 +12,9 @@ apply plugin: 'maven'
 apply plugin: 'signing'
 apply plugin: 'idea'
 
-group = 'com.johnnywey'
-ext.groupId = group
 ext.artifactId = 'flipside'
-ext.version = '0.1.0'
+group = 'com.johnnywey'
+version = '0.1.0-SNAPSHOT'
 
 jar {
     baseName = artifactId
@@ -55,21 +54,14 @@ task sourcesJar(type: Jar) {
     classifier = 'sources'
 }
 
-task testJar(type: Jar, dependsOn: testClasses) {
-    baseName = "test-${project.archivesBaseName}"
-    from sourceSets.test.output
-}
-
 configurations {
     tests
 }
 
 artifacts {
     archives jar
-
     archives javadocJar
     archives sourcesJar
-    tests testJar    
 }    
   
 signing {
@@ -138,7 +130,7 @@ uploadArchives {
         mavenDeployer {
             beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
 
-            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+            repository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
                 authentication(userName: sonatypeUsername, password: sonatypePassword)
             }
 
