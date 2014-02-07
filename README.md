@@ -17,7 +17,7 @@ Flipside is a very simple Groovy / Java options library. It includes three disti
 I built it because I especially missed these idioms when transitioning from Scala back to Java / Groovy.
 
 # Install
-You can install Flipside from the OSS Sonatype Maven repo (https://oss.sonatype.org/content/repositories/snapshots/):
+You can install Flipside from the OSS Sonatype Maven repo `https://oss.sonatype.org/content/repositories/snapshots/`
 
 ```xml
 <dependency>
