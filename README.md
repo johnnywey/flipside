@@ -47,7 +47,7 @@ They each have distinct uses and similar interfaces.
 A `Box` is either empty or full. It's designed for operations that wouldn't necessarily "fail" if a null value were returned but get around passing null or a value:
 
 ```groovy
-import static com.johnnywey.flipside.Boxes
+import static com.johnnywey.flipside.Boxes.*
 
 def full = Some("A string!") // Creates a box containing a string value
 def empty = None() // Creates an empty box
@@ -84,11 +84,11 @@ worked.getDetail()
 A `Failable` is similar to the `Marker` and is designed for operations that succeed with a value or fail with an error condition. When the operation succeeds, you can call `.get()` on the resulting object to get at the value.
 
 ```groovy
-import static com.johnnywey.flipside.Failable
+import static com.johnnywey.flipside.Failable.*
 import com.johnnywey.flipside.failable.Fail
 
 def failed = Failed(Fail.NOT_FOUND, "The thing was not found") // Creates a new one indicating the operation failed and why
-def success = Success("It worked!") // Creates one indicating the operation succeeded
+def success = Succeeded("It worked!") // Creates one indicating the operation succeeded
 
 assert !failed.isSuccess()
 assert success.isSuccess()
