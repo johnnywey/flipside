@@ -48,7 +48,7 @@ class Matcher<T> {
      * @param closure The closure to execute if the match is successful
      */
     public def matches(Class klazz, Closure closure) {
-        if (awaitingMatch && value.class == klazz && awaitingMatch) {
+        if (awaitingMatch && value.class == klazz) {
             call(closure)
         }
     }
