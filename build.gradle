@@ -1,5 +1,3 @@
-ext.version = '0.1.0'
-
 repositories {
     mavenLocal()
     mavenCentral()
@@ -11,11 +9,13 @@ repositories {
 
 apply plugin: 'groovy'
 apply plugin: 'maven'
+apply plugin: 'signing'
 apply plugin: 'idea'
 
 group = 'com.johnnywey'
 ext.groupId = group
 ext.artifactId = 'flipside'
+ext.version = '0.1.0'
 
 jar {
     baseName = artifactId
@@ -31,7 +31,7 @@ idea.module {
 }
 
 idea.project {
-    ext.jdkName = '1.7'
+    ext.jdkName = '1.6'
     ext.wildcards = ['!?*.java', '!?*.groovy']
 }
 
@@ -45,6 +45,16 @@ dependencies {
     testCompile spock
 }
 
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from 'build/docs/javadoc'
+}
+
+task sourcesJar(type: Jar) {
+    from sourceSets.main.allSource
+    classifier = 'sources'
+}
+
 task testJar(type: Jar, dependsOn: testClasses) {
     baseName = "test-${project.archivesBaseName}"
     from sourceSets.test.output
@@ -55,7 +65,15 @@ configurations {
 }
 
 artifacts {
-    tests testJar
+    archives jar
+
+    archives javadocJar
+    archives sourcesJar
+    tests testJar    
+}    
+  
+signing {
+    sign configurations.archives
 }
 
 test {
@@ -113,4 +131,44 @@ task integrationTest(type: Test) {
 
 task wrapper(type: Wrapper) {
     gradleVersion = '1.10'
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                authentication(userName: sonatypeUsername, password: sonatypePassword)
+            }
+
+            pom.project {
+                name 'Flipsde'
+                packaging 'jar'
+                description 'A simple Options library for Groovy'
+                url 'https://github.com/johnnywey/flipside'
+
+                scm {
+                    url 'scm:git@github.com:johnnywey/flipside.git'
+                    connection 'scm:git@github.com:johnnywey/flipside.git'
+                    developerConnection 'scm:git@github.com:johnnywey/flipside.git'
+                }
+
+                licenses {
+                    license {
+                        name 'MIT License'
+                        url 'http://opensource.org/licenses/MIT'
+                        distribution 'repo'
+                    }
+                }
+
+               developers {
+                    developer {
+                        id 'johnnywey'
+                        name 'Johnny Wey'
+                   }
+               }
+           }
+        }
+    }
 }

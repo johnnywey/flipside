@@ -88,7 +88,94 @@ assert success.get() == "It worked!"
 ```
 
 # Matcher
-**Coming soon!**
+The Matcher is my attempt to replicate some of the Scala matching functionality using a Groovy DSL. While in many cases the Matcher works similary to a Groovy `switch` statement, it becomes a lot more useful when combined with the existing Option classes.
+
+It supports a bunch of different types including literal values, data types and Options. When used with Options, the values are automatically unwrapped and injected into the respective hanlder Closures.
+
+A simple type example:
+
+```groovy
+import static com.johnnywey.flipside.Matcher.match
+
+def foundString = false
+match "test" on {
+	matches String, { foundString = true }
+	matches Integer, { foundString = false }
+}
+
+assert foundString == true
+```
+
+A literal value example:
+
+```groovy
+import static com.johnnywey.flipside.Matcher.match
+
+def foundString = false
+def string = "test"
+
+// Should match the first Closure even though both would apply.
+match string on {
+	matches "test", { foundString = true }  
+	matches String, { foundString = false }
+}
+
+assert foundString == true
+```
+To match boxes, use the match key words `some` and `none`. In a `some` condition, the value is automatically unboxed and injected into the handler function.
+
+```groovy
+import static com.johnnywey.flipside.Matcher.match
+import static com.johnnywey.flipside.Boxes.Some
+
+def full = Some("test")
+
+def result = match full on {
+	some { it } // In this case, the matcher will return the value of the box and set it to the implicit var 'it'
+	none { "fail" } // If the box were empty, we would get this value
+}
+
+assert result == "test"
+```
+
+To match Markers, use the match key words `success` and `failure`. In a `success` condition, the handler function is executed with no implicit value (as Markers do not have one). In a `failure` condition, `it` is set to the `DidNotWork` object for easy evaluation.
+
+```groovy
+import static com.johnnywey.flipside.Matcher.match
+import static com.johnnywey.flipside.Markers.Worked
+
+def option_worked = Worked()
+def result_worked = null
+
+match option_worked on {
+	failure { result_worked = null }
+	success { result_worked = "worked!" } // no values are injected here as a Marker contains none
+}
+
+assert result_worked == "worked!"
+```
+
+To match Failables, use the match key words `success` and `failure`. In a `success` condition, the handler function is executed with the value of `it` set to whatever is returned when `.get()` is called on the `Success` object. In a `failure` condition, `it` is set to the `Failed` object for easy evaluation.
+
+```groovy
+import static com.johnnywey.flipside.Matcher.match
+import static com.johnnywey.flipside.Markers.Failables
+
+def option_worked = Success("worked!")
+def result_worked = null
+
+match option_worked on {
+	failure { result_worked = null }
+	success { result_worked = it } // 'it' is automatically set to the the value of 'option_worked.get()'
+}
+
+assert result_worked == "worked!"
+```
+
+To see the whole range of functionality, check out the [MatcherSpec](MatcherSpec.groovy).
+
+# License
+[MIT License](http://opensource.org/licenses/MIT)
 
 
 
