@@ -172,7 +172,7 @@ match option_worked on {
 assert result_worked == "worked!"
 ```
 
-To see the whole range of functionality, check out the [MatcherSpec](MatcherSpec.groovy).
+To see the whole range of functionality, check out the [MatcherSpec](https://github.com/johnnywey/flipside/blob/master/src/test/groovy/com/johnnywey/flipside/MatcherSpec.groovy).
 
 # License
 [MIT License](http://opensource.org/licenses/MIT)
