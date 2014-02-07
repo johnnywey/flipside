@@ -101,9 +101,9 @@ assert success.get() == "It worked!"
 ```
 
 # Matcher
-The Matcher is my attempt to replicate some of the Scala matching functionality using a Groovy DSL. While in many cases the Matcher works similary to a Groovy `switch` statement, it becomes a lot more useful when combined with the existing Option classes.
+The Matcher is my attempt to replicate some of the Scala matching functionality using a Groovy DSL. While in many cases the Matcher works similarly to a Groovy `switch` statement, it becomes a lot more useful when combined with the existing Option classes.
 
-It supports a bunch of different types including literal values, data types and Options. When used with Options, the values are automatically unwrapped and injected into the respective hanlder Closures.
+It supports a bunch of different types including literal values, data types and Options. When used with Options, the values are automatically unwrapped and injected into the respective handler functions.
 
 A simple type example:
 
@@ -188,7 +188,7 @@ assert result_worked == "worked!"
 To see the whole range of functionality, check out the [MatcherSpec](https://github.com/johnnywey/flipside/blob/master/src/test/groovy/com/johnnywey/flipside/MatcherSpec.groovy).
 
 # License
-[MIT License](http://opensource.org/licenses/MIT)
+[MIT License](LICENSE.txt)
 
 
 
