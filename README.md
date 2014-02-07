@@ -172,9 +172,9 @@ To match Failables, use the match key words `success` and `failure`. In a `succe
 
 ```groovy
 import static com.johnnywey.flipside.Matcher.match
-import static com.johnnywey.flipside.Markers.Failables
+import static com.johnnywey.flipside.Markers.Failables.Succeeded
 
-def option_worked = Success("worked!")
+def option_worked = Succeeded("worked!")
 def result_worked = null
 
 match option_worked on {
