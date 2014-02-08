@@ -115,6 +115,13 @@ test {
     }
 }
 
+// Only *require* signing if we are uploading
+gradle.taskGraph.whenReady { taskGraph ->
+    tasks.withType(org.gradle.plugins.signing.Sign).all {
+        required = taskGraph.hasTask(":uploadArchives")
+    }
+}
+
 task integrationTest(type: Test) {
     description = 'Runs the integration tests :D'
     group = 'Verification'
