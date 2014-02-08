@@ -130,13 +130,16 @@ task wrapper(type: Wrapper) {
     gradleVersion = '1.10'
 }
 
+def username = sonatypeUsername ?: 'username'
+def password = sonatypePassword ?: 'password'
+
 uploadArchives {
     repositories {
         mavenDeployer {
             beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
 
             repository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
-                authentication(userName: sonatypeUsername, password: sonatypePassword)
+                authentication(userName: username, password: password)
             }
 
             pom.project {
