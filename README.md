@@ -12,6 +12,8 @@
 </pre>
 Flipside
 ============
+[![Build Status](https://secure.travis-ci.org/johnnywey/flipside.png)](http://travis-ci.org/johnnywey/flipside)
+
 Flipside is a very simple Groovy / Java options library. It includes three distinct kinds of options and a Matcher. That's it. Easy peasy.
 
 I built it because I especially missed these idioms when transitioning from Scala back to Java / Groovy.
