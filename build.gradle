@@ -130,8 +130,14 @@ task wrapper(type: Wrapper) {
     gradleVersion = '1.10'
 }
 
-def username = sonatypeUsername ?: 'username'
-def password = sonatypePassword ?: 'password'
+def username = 'username'
+def password = 'password'
+if(hasProperty('sonatypeUsername')) {
+    username = sonatypeUsername
+}
+if(hasProperty('sonatypePassword')) {
+    password = sonatypePassword
+}
 
 uploadArchives {
     repositories {
