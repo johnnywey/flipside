@@ -23,11 +23,11 @@ You can install Flipside from the OSS Sonatype Maven repo `https://oss.sonatype.
 <dependency>
     <groupId>com.johnnywey</groupId>
     <artifactId>flipside</artifactId>
-    <version>0.1.0-SNAPSHOT</version>
+    <version>0.1.3-SNAPSHOT</version>
 </dependency>
 ```
 
-I will pull together a full release shortly.
+All files are built for Java versions >= 1.6. I will pull together a full release shortly.
 
 # Fail Enum
 Two of the three options take the `Fail` enum as part of their constructor params. This is to indicate what went wrong and to try and map the failure back to an HTTP response code. For now, these are hard-coded. In the future, they will be an interface that will allow you to drop in your own failure types.
