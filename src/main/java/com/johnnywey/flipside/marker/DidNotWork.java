@@ -3,7 +3,7 @@ package com.johnnywey.flipside.marker;
 import com.johnnywey.flipside.failable.Fail;
 
 /**
- * Signal that an operation did not work. Contains the {@link com.johnnywey.flipside.option.failable.Failed} instance
+ * Signal that an operation did not work. Contains the {@link com.johnnywey.flipside.failable.Failed} instance
  * for interrogation.
  */
 public class DidNotWork implements DidItWork {
