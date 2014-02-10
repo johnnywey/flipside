@@ -18,23 +18,44 @@ Flipside is a very simple Groovy / Java options library. It includes three disti
 
 I built it because I especially missed these idioms when transitioning from Scala back to Java / Groovy.
 
-# Install
+## Install
 You can install Flipside from the OSS Sonatype Maven repo `https://oss.sonatype.org/content/repositories/snapshots/`
 
+You will probably need to manually exclude the Groovy dependency.
+
+### Maven:
 ```xml
 <dependency>
     <groupId>com.johnnywey</groupId>
     <artifactId>flipside</artifactId>
-    <version>0.1.3-SNAPSHOT</version>
+    <version>0.1.5-SNAPSHOT</version>
+	<exclusions>
+     <exclusion>
+       <groupId>org.codehaus.groovy</groupId>
+       <artifactId>groovy-all</artifactId>
+     </exclusion>
+   </exclusions>    
 </dependency>
+```
+
+### Gradle:
+```groovy
+ compile('com.johnnywey:flipside:0.1.5-SNAPSHOT') {
+            exclude module: 'groovy-all'
+}
+```
+
+### Grails:
+```groovy
+compile('com.johnnywey:flipside:0.1.5-SNAPSHOT') { excludes 'groovy-all' }
 ```
 
 All files are built for Java versions >= 1.6. I will pull together a full release shortly.
 
-# Fail Enum
+## Fail Enum
 Two of the three options take the `Fail` enum as part of their constructor params. This is to indicate what went wrong and to try and map the failure back to an HTTP response code. For now, these are hard-coded. In the future, they will be an interface that will allow you to drop in your own failure types.
 
-# Option Types
+## Option Types
 First of all, if you want to know more about Options, start [here](http://en.wikipedia.org/wiki/Option_type).
 
 There are three different types of Options in Flipside:
@@ -45,7 +66,7 @@ There are three different types of Options in Flipside:
 
 They each have distinct uses and similar interfaces.
 
-# Box
+## Box
 A `Box` is either empty or full. It's designed for operations that wouldn't necessarily "fail" if a null value were returned but get around passing null or a value:
 
 ```groovy
@@ -61,7 +82,7 @@ assert "A string!" == full.get()
 empty.get() // will throw an UnsupportedOperationException
 ```
 
-# Marker
+## Marker
 A `Marker` is designed for operations that result in [side effects](http://en.wikipedia.org/wiki/Side_effect_(computer_science)) such as writing some tracking information in a database or uploading a photo to a back-end image processing tier. You wouldn't need a return type if things go well but, if things fail, you'd probably want some indication as to *why*.
 
 ```groovy
@@ -82,7 +103,7 @@ worked.getReason()
 worked.getDetail()
 ```
 
-# Failable
+## Failable
 A `Failable` is similar to the `Marker` and is designed for operations that succeed with a value or fail with an error condition. When the operation succeeds, you can call `.get()` on the resulting object to get at the value.
 
 ```groovy
@@ -102,7 +123,7 @@ failed.get() // will throw an UnsupportedOperationException
 assert success.get() == "It worked!"
 ```
 
-# Matcher
+## Matcher
 The Matcher is my attempt to replicate some of the Scala matching functionality using a Groovy DSL. While in many cases the Matcher works similarly to a Groovy `switch` statement, it becomes a lot more useful when combined with the existing Option classes.
 
 It supports a bunch of different types including literal values, data types and Options. When used with Options, the values are automatically unwrapped and injected into the respective handler functions.
