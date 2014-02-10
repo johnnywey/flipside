@@ -10,7 +10,6 @@ public enum Fail {
     INVALID_PARAMETERS(400),
     UNKNOWN(500),
     ACCESS_DENIED(403),
-    // Next line FTW
     SUCCESS(200); // place holder
 
     private final Integer httpResponseCode;

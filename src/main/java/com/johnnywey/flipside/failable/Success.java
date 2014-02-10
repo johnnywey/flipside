@@ -1,5 +1,8 @@
 package com.johnnywey.flipside.failable;
 
+import com.johnnywey.flipside.marker.Worked;
+import com.johnnywey.flipside.marker.DidItWork;
+
 /**
  * Something succeeded.
  */
@@ -29,5 +32,10 @@ public class Success<T> implements Failable<T> {
     @Override
     public String getDetail() {
         return Fail.SUCCESS.name();
+    }
+
+    @Override
+    public DidItWork toDidItWork() {
+        return new Worked();
     }
 }

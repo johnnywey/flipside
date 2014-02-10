@@ -16,6 +16,9 @@ class FailableSpec extends Specification {
         unit.reason.equals(Fail.BAD_REQUEST)
         unit.toString().equals(Failables.Failed(Fail.BAD_REQUEST, errMsg).toString())
         unit.reason.httpResponseCode.equals(Fail.BAD_REQUEST.httpResponseCode)
+
+        unit.toDidItWork().detail.matches(errMsg)
+        unit.toDidItWork().reason.equals(Fail.BAD_REQUEST)
     }
 
     def "test exception"() {
@@ -40,5 +43,6 @@ class FailableSpec extends Specification {
         unit.reason.equals(Fail.SUCCESS)
         unit.detail.equals(Fail.SUCCESS.name())
         unit.get().equals(successMsg)
+        unit.toDidItWork().isSuccess()
     }
 }
