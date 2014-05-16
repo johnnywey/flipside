@@ -2,7 +2,7 @@ package com.johnnywey.flipside.box;
 
 /**
  * An empty Box.
- * <p/>
+ * 
  * Calling .get() will throw an exception.
  */
 public class None<T> implements Box<T> {

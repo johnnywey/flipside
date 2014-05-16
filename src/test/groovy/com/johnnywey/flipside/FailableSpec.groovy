@@ -2,6 +2,7 @@ package com.johnnywey.flipside
 
 import com.johnnywey.flipside.failable.Fail
 import spock.lang.Specification
+import com.johnnywey.flipside.failable.FailableException
 
 class FailableSpec extends Specification {
 
@@ -30,7 +31,7 @@ class FailableSpec extends Specification {
         unit.get()
 
         then:
-        thrown(UnsupportedOperationException)
+        thrown(FailableException)
     }
 
     def "test success"() {

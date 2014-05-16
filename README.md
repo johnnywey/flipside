@@ -28,7 +28,7 @@ You will probably need to manually exclude the Groovy dependency.
 <dependency>
     <groupId>com.johnnywey</groupId>
     <artifactId>flipside</artifactId>
-    <version>0.1.8-SNAPSHOT</version>
+    <version>0.1.9-SNAPSHOT</version>
 	<exclusions>
      <exclusion>
        <groupId>org.codehaus.groovy</groupId>
@@ -40,14 +40,14 @@ You will probably need to manually exclude the Groovy dependency.
 
 ### Gradle:
 ```groovy
-compile('com.johnnywey:flipside:0.1.8-SNAPSHOT') {
+compile('com.johnnywey:flipside:0.1.9-SNAPSHOT') {
   exclude module: 'groovy-all'
 }
 ```
 
 ### Grails:
 ```groovy
-compile('com.johnnywey:flipside:0.1.8-SNAPSHOT') { excludes 'groovy-all' }
+compile('com.johnnywey:flipside:0.1.9-SNAPSHOT') { excludes 'groovy-all' }
 ```
 
 All files are built for Java versions >= 1.6. I will pull together a full release shortly.
@@ -118,7 +118,7 @@ assert success.isSuccess()
 
 assert "The thing was not found" == failed.getDetail()
 assert Fail.NOT_FOUND == failed.getReason()
-failed.get() // will throw an UnsupportedOperationException
+failed.get() // will throw an FailableException with embedded details of the failure
 
 assert success.get() == "It worked!"
 ```

@@ -18,7 +18,7 @@ public class Failed<T> implements Failable<T> {
 
     @Override
     public T get() {
-        throw new UnsupportedOperationException("Cannot resolve value on Failed");
+        throw new FailableException(this);
     }
 
     @Override

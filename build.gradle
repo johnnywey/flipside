@@ -14,7 +14,7 @@ apply plugin: 'idea'
 
 ext.artifactId = 'flipside'
 group = 'com.johnnywey'
-version = '0.1.8-SNAPSHOT'
+version = '0.1.9-SNAPSHOT'
 
 jar {
     baseName = artifactId
@@ -134,7 +134,7 @@ task integrationTest(type: Test) {
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '1.10'
+    gradleVersion = '1.12'
 }
 
 def username = 'username'
