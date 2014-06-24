@@ -9,12 +9,12 @@ public class Worked implements DidItWork {
 
     @Override
     public Fail getReason() {
-        throw new UnsupportedOperationException("Cannot retrieve failure information on a successful operation");
+        return Fail.SUCCESS;
     }
 
     @Override
     public String getDetail() {
-        throw new UnsupportedOperationException("Cannot retrieve failure information on a successful operation");
+        return Fail.SUCCESS.name();
     }
 
     @Override

@@ -8,18 +8,8 @@ class DidItWorkSpec extends Specification {
     def "test worked"() {
         expect:
         Markers.Worked().isSuccess()
-
-        when:
-        Markers.Worked().reason
-
-        then:
-        thrown(UnsupportedOperationException)
-
-        when:
-        Markers.Worked().detail
-
-        then:
-        thrown(UnsupportedOperationException)
+        Markers.Worked().reason == Fail.SUCCESS
+        Markers.Worked().detail == Fail.SUCCESS.name()
     }
 
     def "test did not work"() {
