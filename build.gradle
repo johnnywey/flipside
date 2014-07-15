@@ -14,7 +14,7 @@ apply plugin: 'idea'
 
 ext.artifactId = 'flipside'
 group = 'com.johnnywey'
-version = '0.1.10-SNAPSHOT'
+version = '0.1.11-SNAPSHOT'
 
 jar {
     baseName = artifactId

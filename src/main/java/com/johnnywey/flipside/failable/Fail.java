@@ -9,7 +9,9 @@ public enum Fail {
     BAD_REQUEST(400),
     BAD_RESPONSE(400),
     INVALID_PARAMETERS(400),
+    REQUEST_TIMEOUT(408),
     UNKNOWN(500),
+    INTERNAL_ERROR(500),
     ACCESS_DENIED(403),
     SUCCESS(200); // place holder
 
