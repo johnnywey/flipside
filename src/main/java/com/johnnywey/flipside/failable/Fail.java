@@ -1,5 +1,7 @@
 package com.johnnywey.flipside.failable;
 
+import java.util.regex.Pattern;
+
 public enum Fail {
     CONNECT_TIMEOUT(504),
     READ_TIMEOUT(598),
@@ -16,6 +18,7 @@ public enum Fail {
     SUCCESS(200); // place holder
 
     private final Integer httpResponseCode;
+    private static final Pattern GOOD_RESPONSE = Pattern.compile("20\\d");
 
     Fail(Integer httpResponseCodeIn) {
         httpResponseCode = httpResponseCodeIn;
@@ -24,4 +27,28 @@ public enum Fail {
     public Integer getHttpResponseCode() {
         return httpResponseCode;
     }
+
+    /**
+     * Create one from an existing HTTP status code.
+     * <p/>
+     * <strong>Note</strong>: HTTP status codes of 20x are normalized to 200
+     */
+    public static Fail fromHttpResponseCode(final Integer httpResponseCodeIn) {
+        if (httpResponseCodeIn == null) {
+            return null;
+        }
+
+        // If success, return normalized success
+        if (GOOD_RESPONSE.matcher(httpResponseCodeIn.toString()).matches()) {
+            return SUCCESS;
+        }
+
+        for (Fail f : Fail.values()) {
+            if (f.getHttpResponseCode().equals(httpResponseCodeIn)) {
+                return f;
+            }
+        }
+        return null;
+    }
+
 }

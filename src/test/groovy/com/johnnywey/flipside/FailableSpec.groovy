@@ -1,8 +1,8 @@
 package com.johnnywey.flipside
 
 import com.johnnywey.flipside.failable.Fail
-import spock.lang.Specification
 import com.johnnywey.flipside.failable.FailableException
+import spock.lang.Specification
 
 class FailableSpec extends Specification {
 
@@ -45,5 +45,15 @@ class FailableSpec extends Specification {
         unit.detail.equals(Fail.SUCCESS.name())
         unit.get().equals(successMsg)
         unit.toDidItWork().isSuccess()
+    }
+
+    def "test enum"() {
+        expect:
+        Fail.fromHttpResponseCode(202) == Fail.SUCCESS
+        Fail.fromHttpResponseCode(404) == Fail.NOT_FOUND
+        Fail.fromHttpResponseCode(403) == Fail.ACCESS_DENIED
+        Fail.fromHttpResponseCode(504) == Fail.CONNECT_TIMEOUT
+        Fail.fromHttpResponseCode(10020) == null
+        Fail.fromHttpResponseCode(null) == null
     }
 }
