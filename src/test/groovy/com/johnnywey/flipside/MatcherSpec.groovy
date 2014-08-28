@@ -1,17 +1,16 @@
 package com.johnnywey.flipside
 
-import com.johnnywey.flipside.*
 import com.johnnywey.flipside.failable.Fail
 import com.johnnywey.flipside.failable.Failable
 import com.johnnywey.flipside.failable.Failed
 import com.johnnywey.flipside.failable.Success
 import spock.lang.Specification
 
-import static com.johnnywey.flipside.Matcher.match
 import static com.johnnywey.flipside.Boxes.None
 import static com.johnnywey.flipside.Boxes.Some
 import static com.johnnywey.flipside.Markers.DidNotWork
 import static com.johnnywey.flipside.Markers.Worked
+import static com.johnnywey.flipside.Matcher.match
 import static org.junit.Assert.fail
 
 class MatcherSpec extends Specification {
@@ -122,11 +121,11 @@ class MatcherSpec extends Specification {
 
     def "test responses"() {
         setup:
-        def response_success = [getStatusCode: {-> Fail.SUCCESS.httpResponseCode }] as ClientResponse
-        def response_success_201 = [getStatusCode: {-> 201 }] as ClientResponse
+        def response_success = [getStatusCode: { -> Fail.SUCCESS.httpResponseCode }] as ClientResponse
+        def response_success_201 = [getStatusCode: { -> 201 }] as ClientResponse
         def response_failure = [
-                getStatusCode: {-> Fail.ACCESS_DENIED.httpResponseCode },
-                getStatusText: {-> "Access Denied." }
+                getStatusCode: { -> Fail.ACCESS_DENIED.httpResponseCode },
+                getStatusText: { -> "Access Denied." }
         ] as ClientResponse
         def expected_response_success = null
         def expected_response_success_201 = null
@@ -157,10 +156,10 @@ class MatcherSpec extends Specification {
     def "matcher returns a value"() {
         expect:
         def result =
-            match "test" on {
-                matches "test", { true }
-                false
-            }
+                match "test" on {
+                    matches "test", { true }
+                    false
+                }
 
         result == true
     }

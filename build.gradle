@@ -14,7 +14,7 @@ apply plugin: 'idea'
 
 ext.artifactId = 'flipside'
 group = 'com.johnnywey'
-version = '0.1.12-SNAPSHOT'
+version = '0.1.13-SNAPSHOT'
 
 jar {
     baseName = artifactId
@@ -39,7 +39,7 @@ idea.project {
     ext.wildcards = ['!?*.java', '!?*.groovy']
 }
 
-ext.groovy = 'org.codehaus.groovy:groovy-all:2.2.1'
+ext.groovy = 'org.codehaus.groovy:groovy-all:2.2.2'
 ext.junit = 'junit:junit:4.11'
 ext.spock = 'org.spockframework:spock-core:0.7-groovy-2.0'
 

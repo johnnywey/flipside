@@ -1,21 +1,19 @@
 package com.johnnywey.flipside
 
-import com.johnnywey.flipside.ClientResponse
+import com.johnnywey.flipside.box.Box
 import com.johnnywey.flipside.failable.Fail
 import com.johnnywey.flipside.failable.Failable
 import com.johnnywey.flipside.failable.Failed
-import com.johnnywey.flipside.box.Box
 import com.johnnywey.flipside.marker.DidItWork
 
-
-class Matcher<T> {
+class Matcher {
     private final static SUCCESS_PATTERN = /2\d{2}/ // only supports HTTP 2xx for now ...
     private final Closure closure
-    private final T value
+    private final Object value
     private Boolean awaitingMatch = true
     private Object returnValue = null
 
-    private Matcher(Closure closureIn, T valueIn) {
+    public Matcher(Closure closureIn, Object valueIn) {
         closure = closureIn
         value = valueIn
     }
@@ -29,13 +27,13 @@ class Matcher<T> {
      *
      * @param incoming The incoming object to match
      */
-    public static def match(Object incoming) {
+    public static MatchStipulation match(Object incoming) {
         [on: { Closure closure ->
             def delegate = new Matcher(closure, incoming)
             closure.delegate = delegate
             closure.call(incoming)
             delegate.returnValue
-        }]
+        }] as MatchStipulation
     }
 
     /**
@@ -105,7 +103,7 @@ class Matcher<T> {
             call(closure)
         } else if (awaitingMatch && value instanceof ClientResponse && !((value as ClientResponse).statusCode ==~ SUCCESS_PATTERN)) {
             // create a Fail out of the value
-            Fail fail = Fail.values().find { it.httpResponseCode == (value as ClientResponse).statusCode } ?: Fail.UNKNOWN
+            Fail fail = Fail.values().find { (it as Fail).httpResponseCode == (value as ClientResponse).statusCode } ?: Fail.UNKNOWN
             call(closure, new Failed(fail, value.statusText))
         }
     }
@@ -141,4 +139,8 @@ class Matcher<T> {
         awaitingMatch = false
         returnValue = closure.call(incoming)
     }
+}
+
+public interface MatchStipulation {
+    public Object on(@DelegatesTo(Matcher) Closure closure)
 }

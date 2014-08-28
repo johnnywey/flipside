@@ -1,6 +1,5 @@
 package com.johnnywey.flipside
 
-import com.johnnywey.flipside.Markers
 import com.johnnywey.flipside.failable.Fail
 import spock.lang.Specification
 

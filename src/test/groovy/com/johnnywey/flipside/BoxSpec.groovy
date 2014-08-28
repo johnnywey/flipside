@@ -1,6 +1,5 @@
 package com.johnnywey.flipside
 
-import com.johnnywey.flipside.Boxes
 import spock.lang.Specification
 
 class BoxSpec extends Specification {
