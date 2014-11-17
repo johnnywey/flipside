@@ -37,12 +37,12 @@ public class Failed<T> implements Failable<T> {
     }
 
     @Override
-    public String toString() {
-        return reason + ": " + detail;
+    public DidItWork toDidItWork() {
+        return new DidNotWork(this.reason, this.detail);
     }
 
     @Override
-    public DidItWork toDidItWork() {
-        return new DidNotWork(this.reason, this.detail);
+    public String toString() {
+        return getReason() + " - " + getDetail();
     }
 }

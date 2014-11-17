@@ -38,4 +38,9 @@ public class Success<T> implements Failable<T> {
     public DidItWork toDidItWork() {
         return new Worked();
     }
+
+    @Override
+    public String toString() {
+        return getReason() + " - " + get();
+    }
 }

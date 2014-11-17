@@ -30,7 +30,7 @@ public enum Fail {
 
     /**
      * Create one from an existing HTTP status code.
-     * <p/>
+     *
      * <strong>Note</strong>: HTTP status codes of 20x are normalized to 200
      */
     public static Fail fromHttpResponseCode(final Integer httpResponseCodeIn) {
