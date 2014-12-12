@@ -28,7 +28,7 @@ You will probably need to manually exclude the Groovy dependency.
 <dependency>
     <groupId>com.johnnywey</groupId>
     <artifactId>flipside</artifactId>
-    <version>0.1.14-SNAPSHOT</version>
+    <version>0.1.15-SNAPSHOT</version>
 	<exclusions>
      <exclusion>
        <groupId>org.codehaus.groovy</groupId>
@@ -40,7 +40,7 @@ You will probably need to manually exclude the Groovy dependency.
 
 ### Gradle:
 ```groovy
-compile('com.johnnywey:flipside:0.1.14-SNAPSHOT') {
+compile('com.johnnywey:flipside:0.1.15-SNAPSHOT') {
   exclude module: 'groovy-all'
 }
 ```
