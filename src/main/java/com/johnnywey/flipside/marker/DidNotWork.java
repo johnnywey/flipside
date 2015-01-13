@@ -2,11 +2,15 @@ package com.johnnywey.flipside.marker;
 
 import com.johnnywey.flipside.failable.Fail;
 
+import java.io.Serializable;
+
 /**
  * Signal that an operation did not work. Contains the {@link com.johnnywey.flipside.failable.Failed} instance
  * for interrogation.
  */
-public class DidNotWork implements DidItWork {
+public class DidNotWork implements DidItWork, Serializable {
+    private static final long serialVersionUID = 1L;
+    
     private final Fail failure;
     private final String reason;
 

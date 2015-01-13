@@ -2,6 +2,8 @@ package com.johnnywey.flipside.failable;
 
 import java.util.regex.Pattern;
 
+import java.io.Serializable;
+
 public enum Fail {
     CONNECT_TIMEOUT(504),
     READ_TIMEOUT(598),

@@ -3,10 +3,13 @@ package com.johnnywey.flipside.failable;
 import com.johnnywey.flipside.marker.DidNotWork;
 import com.johnnywey.flipside.marker.DidItWork;
 
+import java.io.Serializable;
+
 /**
  * Something failed.
  */
-public class Failed<T> implements Failable<T> {
+public class Failed<T> implements Failable<T>, Serializable {
+    private static final long serialVersionUID = 1L;
 
     private final Fail reason;
     private final String detail;
