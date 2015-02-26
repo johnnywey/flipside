@@ -15,9 +15,11 @@ public enum Fail {
     INVALID_PARAMETERS(400),
     PAYMENT_REQUIRED(402),
     REQUEST_TIMEOUT(408),
+    TOO_MANY_REQUESTS(429),
     UNKNOWN(500),
     INTERNAL_ERROR(500),
     ACCESS_DENIED(403),
+    ACCEPTED(202),
     SUCCESS(200); // place holder
 
     private final Integer httpResponseCode;
