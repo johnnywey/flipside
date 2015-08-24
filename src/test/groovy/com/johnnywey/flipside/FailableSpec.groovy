@@ -13,6 +13,7 @@ class FailableSpec extends Specification {
 
         expect:
         !unit.isSuccess()
+        unit.getOrElse("ELSE") == "ELSE"
         unit.detail.matches(errMsg)
         unit.reason.equals(Fail.BAD_REQUEST)
         unit.toString().equals(Failables.Failed(Fail.BAD_REQUEST, errMsg).toString())
@@ -44,6 +45,7 @@ class FailableSpec extends Specification {
         unit.reason.equals(Fail.SUCCESS)
         unit.detail.equals(Fail.SUCCESS.name())
         unit.get().equals(successMsg)
+        unit.getOrElse("ELSE") == successMsg
         unit.toDidItWork().isSuccess()
     }
 

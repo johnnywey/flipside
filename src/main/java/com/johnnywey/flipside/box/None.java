@@ -16,6 +16,11 @@ public class None<T> implements Box<T>, Serializable {
     }
 
     @Override
+    public T getOrElse(T alternateIn) {
+        return alternateIn;
+    }
+
+    @Override
     public Boolean isEmpty() {
         return true;
     }

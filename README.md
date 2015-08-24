@@ -28,7 +28,7 @@ You will probably need to manually exclude the Groovy dependency.
 <dependency>
     <groupId>com.johnnywey</groupId>
     <artifactId>flipside</artifactId>
-    <version>0.1.17-SNAPSHOT</version>
+    <version>0.1.18-SNAPSHOT</version>
 	<exclusions>
      <exclusion>
        <groupId>org.codehaus.groovy</groupId>
@@ -40,14 +40,14 @@ You will probably need to manually exclude the Groovy dependency.
 
 ### Gradle:
 ```groovy
-compile('com.johnnywey:flipside:0.1.17-SNAPSHOT') {
+compile('com.johnnywey:flipside:0.1.18-SNAPSHOT') {
   exclude module: 'groovy-all'
 }
 ```
 
-### Grails:
+### Grails (versions < 3. For versions >= 3, see Gradle syntax above):
 ```groovy
-compile('com.johnnywey:flipside:0.1.17-SNAPSHOT') { excludes 'groovy-all' }
+compile('com.johnnywey:flipside:0.1.18-SNAPSHOT') { excludes 'groovy-all' }
 ```
 
 All files are built for Java versions >= 1.6. I will pull together a full release shortly.

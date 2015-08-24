@@ -9,6 +9,6 @@ package com.johnnywey.flipside.box;
  */
 public interface Box<T> {
     T get();
-
+    T getOrElse(T alternateIn);
     Boolean isEmpty();
 }

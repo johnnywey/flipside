@@ -8,6 +8,7 @@ import com.johnnywey.flipside.marker.DidItWork;
  */
 public interface Failable<T> {
     T get();
+    T getOrElse(T alternateIn);
     Boolean isSuccess();
     Fail getReason();
     String getDetail();

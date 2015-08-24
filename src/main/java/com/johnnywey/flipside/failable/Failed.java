@@ -25,6 +25,11 @@ public class Failed<T> implements Failable<T>, Serializable {
     }
 
     @Override
+    public T getOrElse(T alternateIn) {
+        return alternateIn;
+    }
+
+    @Override
     public Boolean isSuccess() {
         return false;
     }

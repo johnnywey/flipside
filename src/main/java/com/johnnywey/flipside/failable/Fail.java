@@ -2,8 +2,6 @@ package com.johnnywey.flipside.failable;
 
 import java.util.regex.Pattern;
 
-import java.io.Serializable;
-
 public enum Fail {
     CONNECT_TIMEOUT(504),
     READ_TIMEOUT(598),
@@ -35,8 +33,11 @@ public enum Fail {
 
     /**
      * Create one from an existing HTTP status code.
-     *
+     * <p>
      * <strong>Note</strong>: HTTP status codes of 20x are normalized to 200
+     *
+     * @param httpResponseCodeIn - The Integer HTTP response code from which to source.
+     * @return A new one or null of one cannot be found by response code.
      */
     public static Fail fromHttpResponseCode(final Integer httpResponseCodeIn) {
         if (httpResponseCodeIn == null) {

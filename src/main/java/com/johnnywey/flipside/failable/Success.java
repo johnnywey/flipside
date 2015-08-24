@@ -23,6 +23,11 @@ public class Success<T> implements Failable<T>, Serializable {
     }
 
     @Override
+    public T getOrElse(T alternateIn) {
+        return this.get();
+    }
+
+    @Override
     public Boolean isSuccess() {
         return true;
     }

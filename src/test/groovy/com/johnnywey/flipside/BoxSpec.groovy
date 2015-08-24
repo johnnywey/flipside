@@ -3,6 +3,7 @@ package com.johnnywey.flipside
 import spock.lang.Specification
 
 class BoxSpec extends Specification {
+
     def "test box is full"() {
         setup:
         def string = "test"
@@ -13,6 +14,7 @@ class BoxSpec extends Specification {
         then:
         !full.isEmpty()
         full.get() == string
+        full.getOrElse("OTHER") == string
     }
 
     def "test box is empty"() {
@@ -25,5 +27,6 @@ class BoxSpec extends Specification {
         then:
         thrown(UnsupportedOperationException)
         empty.isEmpty()
+        empty.getOrElse("ELSE") == "ELSE"
     }
 }

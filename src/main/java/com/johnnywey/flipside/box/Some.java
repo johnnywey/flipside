@@ -4,8 +4,8 @@ import java.io.Serializable;
 
 /**
  * A Full box.
- *
- * Call .get() will return the value.
+ * 
+ * Calling .get() will return the value.
  */
 public class Some<T> implements Box<T>, Serializable {
     private static final long serialVersionUID = 1L;
@@ -19,6 +19,11 @@ public class Some<T> implements Box<T>, Serializable {
     @Override
     public T get() {
         return result;
+    }
+
+    @Override
+    public T getOrElse(T alternateIn) {
+        return this.get();
     }
 
     @Override
