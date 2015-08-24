@@ -134,7 +134,7 @@ task integrationTest(type: Test) {
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '2.6'
+    gradleVersion = '1.12'
 }
 
 def username = 'username'
