@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * A Full box.
- * 
+ *
  * Calling .get() will return the value.
  */
 public class Some<T> implements Box<T>, Serializable {
