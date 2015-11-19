@@ -14,7 +14,7 @@ apply plugin: 'idea'
 
 ext.artifactId = 'flipside'
 group = 'com.johnnywey'
-version = '0.1.19-SNAPSHOT'
+version = '0.1.20-SNAPSHOT'
 
 jar {
     baseName = artifactId
@@ -64,9 +64,7 @@ configurations {
 }
 
 artifacts {
-    archives jar
-    archives javadocJar
-    archives sourcesJar
+    archives jar, javadocJar, sourcesJar
 }    
   
 signing {
@@ -154,8 +152,6 @@ uploadArchives {
             repository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
                 authentication(userName: username, password: password)
             }
-
-            uniqueVersion = false
 
             pom.project {
                 name 'Flipsde'
