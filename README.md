@@ -86,7 +86,7 @@ empty.get() // will throw an UnsupportedOperationException
 A `Marker` is designed for operations that result in [side effects](http://en.wikipedia.org/wiki/Side_effect_(computer_science)) such as writing some tracking information in a database or uploading a photo to a back-end image processing tier. You wouldn't need a return type if things go well but, if things fail, you'd probably want some indication as to *why*.
 
 ```groovy
-import static com.johnnywey.flipside.Markers
+import static com.johnnywey.flipside.Markers.*
 import com.johnnywey.flipside.failable.Fail
 
 def failed = DidNotWork(Fail.NOT_FOUND, "The thing was not found") // Creates a new one indicating the operation failed and why
