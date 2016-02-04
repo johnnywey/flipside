@@ -14,16 +14,16 @@ apply plugin: 'idea'
 
 ext.artifactId = 'flipside'
 group = 'com.johnnywey'
-version = '0.1.20-SNAPSHOT'
+version = '0.1.21-SNAPSHOT'
 
 jar {
     baseName = artifactId
 }
 
-tasks.withType(JavaCompile) { 
+tasks.withType(JavaCompile) {
     sourceCompatibility = '1.6'
     targetCompatibility = '1.6'
-}   
+}
 
 sourceSets.main.groovy.srcDirs = ["src/main/groovy"]
 
@@ -65,8 +65,8 @@ configurations {
 
 artifacts {
     archives jar, javadocJar, sourcesJar
-}    
-  
+}
+
 signing {
     sign configurations.archives
 }

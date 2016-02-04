@@ -2,7 +2,7 @@
 
               ______ _ _       _____ _     _                    
               |  ___| (_)     /  ___(_)   | |                   
- ______ ______| |_  | |_ _ __ \ `--. _  __| | ___ ______ ______ 
+ ______ ______| |_  | |_ _ __ \ `--. _  __| | ___ ______ ______
 |______|______|  _| | | | '_ \ `--. \ |/ _` |/ _ \______|______|
               | |   | | | |_) /\__/ / | (_| |  __/              
               \_|   |_|_| .__/\____/|_|\__,_|\___|              
@@ -28,7 +28,7 @@ You will probably need to manually exclude the Groovy dependency.
 <dependency>
     <groupId>com.johnnywey</groupId>
     <artifactId>flipside</artifactId>
-    <version>0.1.20-SNAPSHOT</version>
+    <version>0.1.21-SNAPSHOT</version>
 	<exclusions>
      <exclusion>
        <groupId>org.codehaus.groovy</groupId>
@@ -40,17 +40,17 @@ You will probably need to manually exclude the Groovy dependency.
 
 ### Gradle:
 ```groovy
-compile('com.johnnywey:flipside:0.1.20-SNAPSHOT') {
+compile('com.johnnywey:flipside:0.1.21-SNAPSHOT') {
   exclude module: 'groovy-all'
 }
 ```
 
 ### Grails (versions < 3. For versions >= 3, see Gradle syntax above):
 ```groovy
-compile('com.johnnywey:flipside:0.1.20-SNAPSHOT') { excludes 'groovy-all' }
+compile('com.johnnywey:flipside:0.1.21-SNAPSHOT') { excludes 'groovy-all' }
 ```
 
-All files are built for Java versions >= 1.6. I will pull together a full release shortly.
+All files are built for Java versions >= 1.6.
 
 ## Fail Enum
 Two of the three options take the `Fail` enum as part of their constructor params. This is to indicate what went wrong and to try and map the failure back to an HTTP response code. For now, these are hard-coded. In the future, they will be an interface that will allow you to drop in your own failure types.
@@ -212,9 +212,3 @@ To see the whole range of functionality, check out the [MatcherSpec](https://git
 
 # License
 [MIT License](LICENSE.txt)
-
-
-
-
-
-
