@@ -1,5 +1,6 @@
 package com.johnnywey.flipside
 
+import com.johnnywey.flipside.box.Box
 import spock.lang.Specification
 
 class BoxSpec extends Specification {
@@ -28,5 +29,23 @@ class BoxSpec extends Specification {
         thrown(UnsupportedOperationException)
         empty.isEmpty()
         empty.getOrElse("ELSE") == "ELSE"
+    }
+
+    def "test parameterized static factory methods"() {
+        expect:
+        aJavaStyleMethod(content).isEmpty() == empty
+
+        where:
+        content | empty
+        ""      | true
+        "test"  | false
+    }
+
+    private static Box<String> aJavaStyleMethod(final String contents) {
+        if (contents) {
+            return Boxes.Some(contents)
+        }
+
+        return Boxes.None()
     }
 }

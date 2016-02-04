@@ -11,11 +11,11 @@ import com.johnnywey.flipside.box.Some
  * {@code None()}
  */
 class Boxes {
-    public static Box Some(value) {
+    public static <T> Box<T> Some(T value) {
         new Some(value)
     }
 
-    public static Box None() {
+    public static <T> Box<T> None() {
         new None()
     }
 }

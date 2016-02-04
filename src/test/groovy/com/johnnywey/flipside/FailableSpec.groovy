@@ -1,6 +1,7 @@
 package com.johnnywey.flipside
 
 import com.johnnywey.flipside.failable.Fail
+import com.johnnywey.flipside.failable.Failable
 import com.johnnywey.flipside.failable.FailableException
 import spock.lang.Specification
 
@@ -57,5 +58,23 @@ class FailableSpec extends Specification {
         Fail.fromHttpResponseCode(504) == Fail.CONNECT_TIMEOUT
         Fail.fromHttpResponseCode(10020) == null
         Fail.fromHttpResponseCode(null) == null
+    }
+
+    def "test parameterized static factory methods"() {
+        expect:
+        aJavaStyleMethod(fail).reason == reason
+
+        where:
+        fail  | reason
+        false | Fail.SUCCESS
+        true  | Fail.INVALID_PARAMETERS
+    }
+
+    private static Failable<String> aJavaStyleMethod(final boolean fail) {
+        if (fail) {
+            return Failables.Failed(Fail.INVALID_PARAMETERS, "This test failed")
+        }
+
+        return Failables.Succeeded("This test passed")
     }
 }
