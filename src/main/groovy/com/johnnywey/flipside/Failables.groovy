@@ -12,11 +12,11 @@ import com.johnnywey.flipside.failable.Success
  * {@code Failed(Fail.INVALID , "Invalid")}
  */
 class Failables {
-    public static Failable Failed(Fail reason, String detail) {
+    public static <T> Failable<T> Failed(Fail reason, String detail) {
         new Failed(reason, detail)
     }
 
-    public static Failable Succeeded(value) {
+    public static <T> Failable<T> Succeeded(T value) {
         new Success(value)
     }
 }
