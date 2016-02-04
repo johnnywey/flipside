@@ -22,4 +22,10 @@ class DidItWorkSpec extends Specification {
         unit.detail == reason
         !unit.isSuccess()
     }
+
+    def "test groovy truth"() {
+        expect:
+        Markers.Worked()
+        !Markers.DidNotWork(Fail.BAD_REQUEST, "failure")
+    }
 }

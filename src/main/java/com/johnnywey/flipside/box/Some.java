@@ -30,4 +30,9 @@ public class Some<T> implements Box<T>, Serializable {
     public Boolean isEmpty() {
         return false;
     }
+
+    @Override
+    public boolean asBoolean() {
+        return true;
+    }
 }
