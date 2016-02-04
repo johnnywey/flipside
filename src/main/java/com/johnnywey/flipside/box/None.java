@@ -24,4 +24,9 @@ public class None<T> implements Box<T>, Serializable {
     public Boolean isEmpty() {
         return true;
     }
+
+    @Override
+    public boolean asBoolean() {
+        return false;
+    }
 }

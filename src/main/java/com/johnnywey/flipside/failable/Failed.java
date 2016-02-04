@@ -50,6 +50,11 @@ public class Failed<T> implements Failable<T>, Serializable {
     }
 
     @Override
+    public boolean asBoolean() {
+        return false;
+    }
+
+    @Override
     public String toString() {
         return getReason() + " - " + getDetail();
     }

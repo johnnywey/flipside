@@ -41,6 +41,12 @@ class BoxSpec extends Specification {
         "test"  | false
     }
 
+    def "test groovy truth"() {
+        expect:
+        Boxes.Some("some")
+        !Boxes.None()
+    }
+
     private static Box<String> aJavaStyleMethod(final String contents) {
         if (contents) {
             return Boxes.Some(contents)

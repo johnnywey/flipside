@@ -11,4 +11,12 @@ public interface Box<T> {
     T get();
     T getOrElse(T alternateIn);
     Boolean isEmpty();
+
+    /**
+     * Defines the 'Groovy Truth' of this Box.
+     *
+     * @return true if this Box has contents, false otherwise
+     * @see <a href="http://www.groovy-lang.org/semantics.html#Groovy-Truth">Groovy Truth</a>
+     */
+    boolean asBoolean();
 }
