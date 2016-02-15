@@ -17,4 +17,12 @@ public interface DidItWork {
     Fail getReason();
     String getDetail();
     Boolean isSuccess();
+
+    /**
+     * Defines the 'Groovy Truth' of this Marker.
+     *
+     * @return true if this Marker indicates success, false otherwise
+     * @see <a href="http://www.groovy-lang.org/semantics.html#Groovy-Truth">Groovy Truth</a>
+     */
+    boolean asBoolean();
 }

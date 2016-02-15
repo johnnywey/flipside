@@ -13,4 +13,12 @@ public interface Failable<T> {
     Fail getReason();
     String getDetail();
     DidItWork toDidItWork();
+
+    /**
+     * Defines the 'Groovy Truth' of this Failable.
+     *
+     * @return true if this Failable indicates success, false otherwise
+     * @see <a href="http://www.groovy-lang.org/semantics.html#Groovy-Truth">Groovy Truth</a>
+     */
+    boolean asBoolean();
 }

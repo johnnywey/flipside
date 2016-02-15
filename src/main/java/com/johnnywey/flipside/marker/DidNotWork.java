@@ -33,5 +33,10 @@ public class DidNotWork implements DidItWork, Serializable {
     public Boolean isSuccess() {
         return false;
     }
+
+    @Override
+    public boolean asBoolean() {
+        return false;
+    }
 }
 

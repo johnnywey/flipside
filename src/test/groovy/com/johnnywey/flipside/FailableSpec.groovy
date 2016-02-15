@@ -70,6 +70,12 @@ class FailableSpec extends Specification {
         true  | Fail.INVALID_PARAMETERS
     }
 
+    def "test groovy truth"() {
+        expect:
+        Failables.Succeeded("success")
+        !Failables.Failed(Fail.BAD_REQUEST, "failure")
+    }
+
     private static Failable<String> aJavaStyleMethod(final boolean fail) {
         if (fail) {
             return Failables.Failed(Fail.INVALID_PARAMETERS, "This test failed")

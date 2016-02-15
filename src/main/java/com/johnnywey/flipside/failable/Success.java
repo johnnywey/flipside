@@ -48,6 +48,11 @@ public class Success<T> implements Failable<T>, Serializable {
     }
 
     @Override
+    public boolean asBoolean() {
+        return true;
+    }
+
+    @Override
     public String toString() {
         return getReason() + " - " + get();
     }

@@ -24,4 +24,9 @@ public class Worked implements DidItWork, Serializable {
     public Boolean isSuccess() {
         return true;
     }
+
+    @Override
+    public boolean asBoolean() {
+        return true;
+    }
 }
