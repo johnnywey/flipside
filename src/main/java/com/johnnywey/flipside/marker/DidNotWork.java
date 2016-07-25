@@ -10,7 +10,7 @@ import java.io.Serializable;
  */
 public class DidNotWork implements DidItWork, Serializable {
     private static final long serialVersionUID = 1L;
-    
+
     private final Fail failure;
     private final String reason;
 
@@ -38,5 +38,9 @@ public class DidNotWork implements DidItWork, Serializable {
     public boolean asBoolean() {
         return false;
     }
-}
 
+    @Override
+    public String toString() {
+        return getReason() + " - " + getDetail();
+    }
+}

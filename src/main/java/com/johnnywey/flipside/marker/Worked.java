@@ -29,4 +29,9 @@ public class Worked implements DidItWork, Serializable {
     public boolean asBoolean() {
         return true;
     }
+
+    @Override
+    public String toString() {
+        return getReason() + " - " + getDetail();
+    }
 }
