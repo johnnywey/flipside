@@ -48,6 +48,11 @@ public class Success<T> implements Failable<T>, Serializable {
     }
 
     @Override
+    public void ifSuccessful(final FailableConsumer<? super T> consumer) {
+        consumer.onSuccess(result);
+    }
+
+    @Override
     public boolean asBoolean() {
         return true;
     }

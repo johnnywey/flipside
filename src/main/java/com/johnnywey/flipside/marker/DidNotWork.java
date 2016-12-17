@@ -35,6 +35,11 @@ public class DidNotWork implements DidItWork, Serializable {
     }
 
     @Override
+    public void ifItWorked(final MarkerConsumer consumer) {
+        // Do nothing
+    }
+
+    @Override
     public boolean asBoolean() {
         return false;
     }

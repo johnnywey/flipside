@@ -50,6 +50,11 @@ public class Failed<T> implements Failable<T>, Serializable {
     }
 
     @Override
+    public void ifSuccessful(final FailableConsumer<? super T> consumer) {
+        // Do nothing
+    }
+
+    @Override
     public boolean asBoolean() {
         return false;
     }

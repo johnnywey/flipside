@@ -26,6 +26,11 @@ public class None<T> implements Box<T>, Serializable {
     }
 
     @Override
+    public void ifPresent(final BoxConsumer<T> consumer) {
+        // Do nothing
+    }
+
+    @Override
     public boolean asBoolean() {
         return false;
     }
