@@ -32,6 +32,11 @@ public class Some<T> implements Box<T>, Serializable {
     }
 
     @Override
+    public void ifPresent(final BoxConsumer<? super T> consumer) {
+        consumer.onValuePresent(result);
+    }
+
+    @Override
     public boolean asBoolean() {
         return true;
     }

@@ -15,6 +15,14 @@ public interface Failable<T> {
     DidItWork toDidItWork();
 
     /**
+     * If the operation is successful, invoke the specified consumer with the value of {@link #get()},
+     * otherwise do nothing.  Works similarly to {@code Optional#ifPresent} in JDK 8+.
+     *
+     * @param consumer the consumer to invoke if this Failable succeeded
+     */
+    void ifSuccessful(FailableConsumer<? super T> consumer);
+
+    /**
      * Defines the 'Groovy Truth' of this Failable.
      *
      * @return true if this Failable indicates success, false otherwise

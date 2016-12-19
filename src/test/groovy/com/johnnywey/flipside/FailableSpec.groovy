@@ -76,6 +76,26 @@ class FailableSpec extends Specification {
         !Failables.Failed(Fail.BAD_REQUEST, "failure")
     }
 
+    def "test on success callback"() {
+        setup:
+        def callbackWasCalled = false
+
+        when: "the failable didn't succeed"
+        Failables.Failed(Fail.INTERNAL_ERROR, "This failed").ifSuccessful { callbackWasCalled = true }
+
+        then: "the callback should not be called"
+        !callbackWasCalled
+
+        when: "the failable succeeded"
+        Failables.Succeeded("This succeeded").ifSuccessful { result ->
+            assert result == "This succeeded"
+            callbackWasCalled = true
+        }
+
+        then: "the callback should have been called"
+        callbackWasCalled
+    }
+
     private static Failable<String> aJavaStyleMethod(final boolean fail) {
         if (fail) {
             return Failables.Failed(Fail.INVALID_PARAMETERS, "This test failed")

@@ -19,6 +19,13 @@ public interface DidItWork {
     Boolean isSuccess();
 
     /**
+     * If the operation worked, invoke the specified consumer, otherwise do nothing.
+     *
+     * @param consumer the consumer to invoke if this worked
+     */
+    void ifItWorked(MarkerConsumer consumer);
+
+    /**
      * Defines the 'Groovy Truth' of this Marker.
      *
      * @return true if this Marker indicates success, false otherwise

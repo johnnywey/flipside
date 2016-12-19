@@ -26,6 +26,11 @@ public class Worked implements DidItWork, Serializable {
     }
 
     @Override
+    public void ifItWorked(final MarkerConsumer consumer) {
+        consumer.onItWorked();
+    }
+
+    @Override
     public boolean asBoolean() {
         return true;
     }

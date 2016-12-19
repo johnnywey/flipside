@@ -13,6 +13,14 @@ public interface Box<T> {
     Boolean isEmpty();
 
     /**
+     * If the box is full, invoke the specified consumer with the value of {@link #get()}, otherwise do nothing.
+     * Works similarly to {@code Optional#ifPresent} in JDK 8+.
+     *
+     * @param consumer the consumer to invoke if this Box is full
+     */
+    void ifPresent(BoxConsumer<? super T> consumer);
+
+    /**
      * Defines the 'Groovy Truth' of this Box.
      *
      * @return true if this Box has contents, false otherwise
