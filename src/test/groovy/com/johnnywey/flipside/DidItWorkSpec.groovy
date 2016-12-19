@@ -28,4 +28,21 @@ class DidItWorkSpec extends Specification {
         Markers.Worked()
         !Markers.DidNotWork(Fail.BAD_REQUEST, "failure")
     }
+
+    def "test it worked callback"() {
+        setup:
+        def callbackWasCalled = false
+
+        when: "it didn't work :("
+        Markers.DidNotWork(Fail.INTERNAL_ERROR, "This failed").ifItWorked { callbackWasCalled = true }
+
+        then: "the callback should not be called"
+        !callbackWasCalled
+
+        when: "it worked!"
+        Markers.Worked().ifItWorked() { callbackWasCalled = true }
+
+        then: "the callback should have been called"
+        callbackWasCalled
+    }
 }

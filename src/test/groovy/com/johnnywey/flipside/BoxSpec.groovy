@@ -47,6 +47,26 @@ class BoxSpec extends Specification {
         !Boxes.None()
     }
 
+    def "test if present callback"() {
+        setup:
+        def callbackWasCalled = false
+
+        when: "the box is empty"
+        Boxes.None().ifPresent { callbackWasCalled = true }
+
+        then: "the callback should not be called"
+        !callbackWasCalled
+
+        when: "the box is full"
+        Boxes.Some("Presents!").ifPresent { contents ->
+            assert contents == "Presents!"
+            callbackWasCalled = true
+        }
+
+        then: "the callback should have been called"
+        callbackWasCalled
+    }
+
     private static Box<String> aJavaStyleMethod(final String contents) {
         if (contents) {
             return Boxes.Some(contents)
