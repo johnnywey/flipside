@@ -18,7 +18,7 @@ public interface Box<T> {
      *
      * @param consumer the consumer to invoke if this Box is full
      */
-    void ifPresent(BoxConsumer<T> consumer);
+    void ifPresent(BoxConsumer<? super T> consumer);
 
     /**
      * Defines the 'Groovy Truth' of this Box.
