@@ -26,7 +26,7 @@ public class None<T> implements Box<T>, Serializable {
     }
 
     @Override
-    public void ifPresent(final BoxConsumer<T> consumer) {
+    public void ifPresent(final BoxConsumer<? super T> consumer) {
         // Do nothing
     }
 
