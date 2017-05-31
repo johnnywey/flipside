@@ -18,6 +18,7 @@ public enum Fail {
     INTERNAL_ERROR(500),
     ACCESS_DENIED(403),
     INVALID_METHOD(405),
+    CONFLICT(409),
     ACCEPTED(202),
     SUCCESS(200); // place holder
 
